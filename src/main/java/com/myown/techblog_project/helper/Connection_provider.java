@@ -1,4 +1,4 @@
-package com.myown.durgesh_techblog_project.helper;
+package com.myown.techblog_project.helper;
 
 import java.sql.*;
 public class Connection_provider {

@@ -1,4 +1,4 @@
-package com.myown.durgesh_techblog_project.entities;
+package com.myown.techblog_project.entities;
 
 import java.sql.Timestamp;
 

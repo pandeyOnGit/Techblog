@@ -1,6 +1,6 @@
-package com.myown.durgesh_techblog_project.dao;
+package com.myown.techblog_project.dao;
 
-import com.myown.durgesh_techblog_project.entities.User;
+import com.myown.techblog_project.entities.User;
 
 import java.sql.*;
 

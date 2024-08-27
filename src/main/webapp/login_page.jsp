@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.myown.techblog_project.entities.Message" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 08-08-2024
@@ -16,7 +16,7 @@
 </head>
 <body>
 <%--    navbar--%>
-    <%@include file="normal_navbar.jsp"%>
+<%@include file="normal_navbar.jsp" %>
 
 
 <main class="d-flex align-items-center primary-background text-dark banner-background" style="height: 80vh">
@@ -28,6 +28,18 @@
                         <span class="fa fa-user-plus fa-2x"></span>
                         <p>Login Here</p>
                     </div>
+                    <%
+                        Message m = (Message) session.getAttribute("msg");
+                        if (m != null) {
+                    %>
+                    <div class="alert <%= m.getCssClass()%>" role="alert">
+                        <%=m.getContent()%>
+                    </div>
+
+                    <%
+                            session.removeAttribute("msg");
+                        }
+                    %>
                     <div class="card-body">
                         <form action="LoginServlet" method="post">
                             <div class="form-group">
@@ -39,14 +51,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password" required class="form-control" id="exampleInputPassword1"
+                                <input type="password" name="password" required class="form-control"
+                                       id="exampleInputPassword1"
                                        placeholder="Password">
                             </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            <%--                            <div class="form-check">--%>
+                            <%--                                <input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+                            <%--                                <label class="form-check-label" for="exampleCheck1">Remember me</label>--%>
+                            <%--                            </div>--%>
+                            <div class="container text-center">
+                                <button type="submit" class="btn btn-primary">Login</button>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
 

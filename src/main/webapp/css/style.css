@@ -3,8 +3,11 @@
 /*!*}*!*/
 .primary-background{
     background: #00bcd4!important;
-    /*color: white;*/
-}
+    /*color: black;*/
+    }
 a{
     color: white;
+}
+label {
+    color: #000000; /* Black or any color that contrasts well with the background */
 }
