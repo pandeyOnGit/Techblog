@@ -40,6 +40,7 @@ public class EditServlet extends HttpServlet {
                 user.setName(name);
                 user.setPassword(password);
                 user.setAbout(about);
+                String oldFile = user.getProfile();
                 user.setProfile(imageName);
 
                 // Update database
@@ -52,23 +53,28 @@ public class EditServlet extends HttpServlet {
                     String fullPath = profilePath.toString();
 
                     // Handle file deletion
-                    Helper.deleteFile(fullPath);
+                    String realPath1 = req.getServletContext().getRealPath("/");
+                    Path profilePath1 = Paths.get(realPath1, "pics", oldFile);
+                    String fullPath1 = profilePath1.toString();
+
+                    if (!oldFile.equals("default.png")) {
+                        Helper.deleteFile(fullPath1);
+                    }
 
                     // Save new file
                     if (imageName != null && !imageName.isEmpty()) {
                         if (Helper.saveFile(part.getInputStream(), fullPath)) {
                             out.println("Profile Updated");
-                            Message msg = new Message("Profile details Updated...", "success","alert-success");
+                            Message msg = new Message("Profile details Updated...", "success", "alert-success");
                             session.setAttribute("msg", msg);
                         } else {
                             out.println("File not saved successfully");
-                            Message msg = new Message("File not saved successfully", "error","alert-danger");
+                            Message msg = new Message("File not saved successfully", "error", "alert-danger");
                             session.setAttribute("msg", msg);
-
                         }
                     } else {
                         out.println("No file selected or file name is empty");
-                        Message msg = new Message("No file selected or file name is empty", "error","alert-danger");
+                        Message msg = new Message("No file selected or file name is empty", "error", "alert-danger");
                         session.setAttribute("msg", msg);
                     }
 
